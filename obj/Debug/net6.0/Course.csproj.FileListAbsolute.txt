@@ -40,3 +40,45 @@ C:\Users\coimb\source\repos\Pim 4,3 semestre\Course\obj\Debug\net6.0\Course.pdb
 C:\Users\coimb\source\repos\Pim 4,3 semestre\Course\obj\Debug\net6.0\Course.genruntimeconfig.cache
 C:\Users\coimb\source\repos\Pim 4,3 semestre\Course\obj\Debug\net6.0\ref\Course.dll
 C:\Users\coimb\source\repos\Pim 4,3 semestre\Course\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\appsettings.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Course.exe
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Course.deps.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Course.runtimeconfig.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Course.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Course.pdb
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Humanizer.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.csproj.AssemblyReference.cache
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.AssemblyInfoInputs.cache
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.AssemblyInfo.cs
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.csproj.CoreCompileInputs.cache
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets\msbuild.Course.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets\msbuild.build.Course.props
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Course.props
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Course.props
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\scopedcss\bundle\Course.styles.css
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.csproj.CopyComplete
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\refint\Course.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.pdb
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.genruntimeconfig.cache
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\ref\Course.dll

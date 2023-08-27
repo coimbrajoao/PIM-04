@@ -29,7 +29,7 @@ internal class Program
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         builder.Services.AddScoped<UserServices>();
-        
+
         
 
 

@@ -9,6 +9,5 @@ namespace Course.Data.Dtos
 
         [Required]
         public string Password { get; set; }
-
     }
 }

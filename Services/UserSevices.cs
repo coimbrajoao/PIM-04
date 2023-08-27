@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Course.Services
 {
-    public class UserServices 
+    public class UserServices
     {
         private IMapper _mapper;
         private UserManager<User> _userManager;
@@ -31,8 +31,9 @@ namespace Course.Services
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException("Usuário não autenticado!");
+                throw new ApplicationException("Usuario não autenticado");
             }
+
         }
     }
 }

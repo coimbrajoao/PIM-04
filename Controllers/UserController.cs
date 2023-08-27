@@ -27,13 +27,7 @@ namespace Course.Controllers
             return Ok();
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginUserDto dto)
-        {
-            await _UserService.Login(dto);
-
-            return Ok();
-        }
+        
     
     }
 }
