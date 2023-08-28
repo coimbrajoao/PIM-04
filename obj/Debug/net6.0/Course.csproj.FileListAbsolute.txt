@@ -82,3 +82,11 @@ C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\refint\Co
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.pdb
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\Course.genruntimeconfig.cache
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\obj\Debug\net6.0\ref\Course.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

@@ -11,7 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder; // Para suporte à classe WebApplication
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models; // Para suporte ao Swagger
-
+using Microsoft.AspNetCore.WebSockets;
+using Course.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 internal class Program
 {
@@ -30,8 +35,11 @@ internal class Program
 
         builder.Services.AddScoped<UserServices>();
 
-        
+        builder.Services.AddScoped<TokenService>();
 
+        builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+        builder.Services.AddSingleton<IAuthorizationHandler, IdadeAuthorization>();
 
         builder.Services.AddControllers();
         builder.Services.AddMvc();
@@ -39,6 +47,28 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme =
+                JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1asadeqw523q4wxdjdsaojefwofjamskomqpwofjrqwrfqmocefqpqmceifposdkap")),
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("IdadeMinima", policy => policy.AddRequirements(new IdadeMinima(18)));
+        });
+       
 
         var app = builder.Build();
 

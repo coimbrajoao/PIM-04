@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Course.Data
 {
-    public class FolhaContext : IdentityDbContext 
+    public class FolhaContext : IdentityDbContext<User>
     {
         public FolhaContext(DbContextOptions<FolhaContext> opts) : base(opts) { }
 

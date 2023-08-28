@@ -18,8 +18,8 @@ namespace Course.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginUserDto dto)
         {
-           await _UserService.Login(dto);
-            return Ok("Usuario autenticado");
+          var token =   await _UserService.Login(dto);
+            return Ok(token);
         }
     }
 }

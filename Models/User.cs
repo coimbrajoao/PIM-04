@@ -5,6 +5,7 @@ namespace Course.Models
 {
     public class User : IdentityUser
     {
-        public User() : base(){}
+        public User() : base() { }
+        public  DateTime Datebirth { get; set; }
     }
 }
