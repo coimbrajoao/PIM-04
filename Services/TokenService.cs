@@ -13,7 +13,7 @@ namespace Course.Services
             Claim[] claims = new Claim[]
             {
                 new Claim("username", user.UserName),
-                new Claim("id", user.Id),
+                new Claim("Id", user.Id.ToString()),
                 new Claim(ClaimTypes.DateOfBirth, user.Datebirth.ToString()),
                 new Claim("loginTimestamp", DateTime.UtcNow.ToString())
                 

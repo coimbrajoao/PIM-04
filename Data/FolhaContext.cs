@@ -9,6 +9,8 @@ namespace Course.Data
     {
         public FolhaContext(DbContextOptions<FolhaContext> opts) : base(opts) { }
 
+       
+
         public DbSet<User> Users { get; set; }
         
 

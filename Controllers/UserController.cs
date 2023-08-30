@@ -19,7 +19,7 @@ namespace Course.Controllers
             _UserService = registerUser;
         }
 
-        [HttpPost ("Cadastro")]
+        [HttpPost ("/Cadastro")]
         public async Task< IActionResult> Register(CreateUserDto dto)
         {
             await _UserService.Register(dto);
@@ -27,7 +27,27 @@ namespace Course.Controllers
             return Ok();
         }
 
-        
+        [HttpGet]
+        [Route ("/view")]
+        public async Task<IActionResult> ViewAllUsers()
+        {
+            var users = await _UserService.FindAllAsync();
+            return Ok(users);
+        }
+
+        [HttpGet]
+        [Route("/view{id}")]
+        public async Task<IActionResult> Details(string id)
+        {
+            var user= await _UserService.FindById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
+
     
     }
 }

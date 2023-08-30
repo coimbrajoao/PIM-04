@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
+using Course.Data;
 using Course.Data.Dtos;
 using Course.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Course.Services
 {
@@ -11,13 +15,15 @@ namespace Course.Services
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
         private TokenService _tokenService;
+        private FolhaContext _folhaContext;
 
-        public UserServices(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService)
+        public UserServices(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService, FolhaContext folhaContext)
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _folhaContext = folhaContext;
         }
 
         public async Task Register(CreateUserDto dto)
@@ -41,6 +47,18 @@ namespace Course.Services
             var token = _tokenService.GenerateToken(user);
 
             return token;
+        }
+
+        public async Task<List<User>> FindAllAsync()
+        {
+            var result = await _folhaContext.Users.OrderBy(x => x.UserName).ToListAsync();
+            return result;
+        }
+
+        public async Task<User> FindById(string id)
+        {
+            var result = await _folhaContext.Users.FindAsync(id);
+            return result;
         }
     }
 }
