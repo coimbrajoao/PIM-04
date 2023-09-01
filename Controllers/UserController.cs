@@ -37,7 +37,7 @@ namespace Course.Controllers
 
         [HttpGet]
         [Route("/view{id}")]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             var user= await _UserService.FindById(id);
             if (user == null)
@@ -47,6 +47,30 @@ namespace Course.Controllers
             return Ok(user);
         }
 
+        [HttpPut]
+        [Route("/{id}")]
+        public async Task<IActionResult> Edit(int id,User userupdate)
+        {
+            var user = await _UserService.Update(id,userupdate);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+
+        }
+
+        [HttpDelete]
+        [Route("/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _UserService.Delete(id);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
 
     
     }

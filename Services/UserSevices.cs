@@ -55,10 +55,41 @@ namespace Course.Services
             return result;
         }
 
-        public async Task<User> FindById(string id)
+        public async Task<User> FindById(int id)
         {
             var result = await _folhaContext.Users.FindAsync(id);
             return result;
+        }
+
+        public async Task<User> Update(int id, User userupdates)
+        {
+            var user = await  _folhaContext.FindAsync<User>(id);
+            if(user == null)
+            {
+                throw new ApplicationException("Usuario nao encontrado");
+            }
+
+            user.Email = userupdates.Email;
+            user.UserName = userupdates.UserName;
+            user.PhoneNumber = userupdates.PhoneNumber;
+            user.PasswordHash = userupdates.PasswordHash;
+
+            await _folhaContext.SaveChangesAsync();
+            return user;
+
+        }
+
+        public async Task<User> Delete(int id)
+        {
+            var user = await _folhaContext.FindAsync<User>(id);
+            if(user == null)
+            {
+                throw new ApplicationException("Usuário não encontrado");
+            }
+            _folhaContext.Remove(user);
+            await _folhaContext.SaveChangesAsync();
+
+            return user;
         }
     }
 }

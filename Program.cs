@@ -28,7 +28,7 @@ internal class Program
 
         builder.Services.AddDbContext<FolhaContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-        builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<FolhaContext>().AddDefaultTokenProviders();
+        builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores<FolhaContext>().AddDefaultTokenProviders();
         // Add services to the container.
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

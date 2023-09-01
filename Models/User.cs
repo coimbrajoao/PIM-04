@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Course.Models
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Idcadastro { get; set; }
+        
         public User() : base() { }
         public  DateTime Datebirth { get; set; }
     }
