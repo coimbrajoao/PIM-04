@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Course.Data.Dtos
 {
@@ -20,11 +21,29 @@ namespace Course.Data.Dtos
 
 
         [Required]
-        public string CPF { get; set; }
+        public string CPF { get; set; } = null!;
 
-        
+        [Required]
+        public int Matricula { get; set; }
+        [Required]
+        public string Rg { get; set; } = null!;
+        [Required]
+        public string Nis { get; set; } = null!;
+        [Required]
+        public string Pis { get; set; } = null!;
+        [Required]
+        public string Logradouro { get; set; } = null!;
+        [Required]
+        public string Bairro { get; set; } = null!;
 
+        public int? Numero { get; set; }
 
+        public int? Complemento { get; set; }
+        [Required]
+        public string Cidade { get; set; } = null!;
+        [Required]
+        public string Uf { get; set; } = null!;
 
+        public string Genero { get; set; } = null!;
     }
 }

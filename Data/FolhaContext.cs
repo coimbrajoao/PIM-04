@@ -13,6 +13,7 @@ namespace Course.Data
 
         public DbSet<User> Users { get; set; }
         
+        public DbSet<Payroll> Payrolls { get; set; }
 
     }
 

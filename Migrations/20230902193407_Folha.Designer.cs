@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.Migrations
 {
     [DbContext(typeof(FolhaContext))]
-    [Migration("20230901141224_Login")]
-    partial class Login
+    [Migration("20230902193407_Folha")]
+    partial class Folha
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,37 @@ namespace Course.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Course.Models.Payroll", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Fgts")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("GrossSalary")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("INSS")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("NetSalary")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("date_of_competence")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payrolls");
+                });
 
             modelBuilder.Entity("Course.Models.User", b =>
                 {
@@ -49,6 +80,9 @@ namespace Course.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Matricula")
+                        .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -215,6 +249,17 @@ namespace Course.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Course.Models.Payroll", b =>
+                {
+                    b.HasOne("Course.Models.User", "User")
+                        .WithMany("Payrolls")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
@@ -264,6 +309,11 @@ namespace Course.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Course.Models.User", b =>
+                {
+                    b.Navigation("Payrolls");
                 });
 #pragma warning restore 612, 618
         }
