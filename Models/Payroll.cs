@@ -16,7 +16,7 @@ namespace Course.Models
         public DateTime date_of_competence { get; set; }
 
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         
         public User User { get; set; }
     }

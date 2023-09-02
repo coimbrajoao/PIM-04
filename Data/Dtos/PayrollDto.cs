@@ -12,7 +12,7 @@ namespace Course.Data.Dtos
         public DateTime date_of_competence { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public decimal NetSalary { get; set; }
         public decimal Fgts { get; set; }
         public decimal INSS { get; set; }
