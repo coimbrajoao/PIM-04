@@ -31,7 +31,9 @@ namespace Course.Controllers
         [Route ("/view")]
         public async Task<IActionResult> ViewAllUsers()
         {
-            var users = await _UserService.FindAllAsync();
+            int page = 1;
+            int pageSize = 10;
+            var users = await _UserService.GetPagedResultAsync(page, pageSize);
             return Ok(users);
         }
 

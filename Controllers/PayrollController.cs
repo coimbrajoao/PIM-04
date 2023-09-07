@@ -20,22 +20,37 @@ namespace Course.Controllers
 
 
         // GET api/<PayrollController>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("view")]
+        public async Task<IActionResult> Get()
         {
             int pageSize = 10;
-            var result = await _PayrollService.GetPayrollAsync(id, pageSize);
+            int page = 1;
+            var result = await _PayrollService.GetPayrollAsync(page, pageSize);
             return Ok(result);
         }
 
         // POST api/<PayrollController>
-        [HttpPost]
-        [Route ("/genpayroll")]
-        public async Task<IActionResult> GenerationPayroll(PayrollDto payrollDto)
+        [HttpPost("generate")]
+        public async Task<IActionResult> GeneratePayroll(PayrollDto payrollDto)
         {
-            var result = await _PayrollService.PayrollGeneration(payrollDto);
-            return Ok(result);
+            try
+            {
+                var netSalary = await _PayrollService.PayrollGeneration(payrollDto);
+                return Ok(new { NetSalary = netSalary });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Error = ex.Message });
+            }
         }
+
+
+        //[HttpPost]
+        //[Route("/generationpdf")]
+        //public async Task<IActionResult> GenerationPayrollPdf()
+        //{
+        //    return Ok();
+        //}
 
         // PUT api/<PayrollController>/5
         //[HttpPut("{id}")]

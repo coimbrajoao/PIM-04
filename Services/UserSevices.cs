@@ -48,12 +48,24 @@ namespace Course.Services
 
             return token;
         }
-
-        public async Task<List<User>> FindAllAsync()
+        public async Task<PagedResult<User>> GetPagedResultAsync(int pageNumber, int pageSize)
         {
-            var result = await _folhaContext.Users.OrderBy(x => x.UserName).ToListAsync();
-            return result;
+            var result = await _folhaContext.Users.OrderBy(x => x.Id).ToListAsync();
+            var count = await _folhaContext.Users.CountAsync();
+
+            var item = result.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+            var pagedResult = new PagedResult<User>()
+            {
+                TotalCount = count,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                Items = item
+            };
+
+            return pagedResult;
         }
+
 
         public async Task<User> FindById(int id)
         {

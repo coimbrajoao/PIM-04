@@ -3,6 +3,7 @@ using Course.Data.Dtos;
 using Course.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace Course.Services
 {
@@ -18,74 +19,51 @@ namespace Course.Services
 
         public async Task<decimal> PayrollGeneration(PayrollDto payroll)
         {
-            var UserAutenticado = await _folhacontext.Users.AnyAsync(x => x.Id == payroll.UserId);
-            if (!UserAutenticado)
+            // Verifica se o usuário está autenticado
+            var userAutenticado = await _folhacontext.Users.AnyAsync(x => x.Id == payroll.UserId);
+            if (!userAutenticado)
             {
                 throw new Exception("Usuário não autenticado");
             }
 
-            var pay = payroll.GrossSalary;
-            decimal faixa1 = 1903.98M;
-            decimal faixa2 = 2826.65M;
-            decimal faixa3 = 3751.05M;
-            decimal faixa4 = 4664.69M;
-            decimal irrf;
-            decimal inss;
-            decimal fgts;
+            // Define as faixas de INSS
+            var faixasInss = new Dictionary<decimal, decimal>
+    {
+        { 1100m, 0.075m },
+        { 2203.48m, 0.09m },
+        { 3305.22m, 0.12m },
+        { 6433.57m, 0.14m },
+        { decimal.MaxValue, 751.99m }
+    };
 
-            fgts = Math.Round((pay * 8) / 100, 2);
+            // Define as faixas de IRRF
+            var faixasIrrf = new Dictionary<decimal, (decimal Aliquota, decimal Deducao)>
+    {
+        { 1903.98m, (0m, 0m) },
+        { 2826.65m, (0.075m, 142.80m) },
+        { 3751.05m, (0.15m, 354.08m) },
+        { 4664.69m, (0.225m, 636.13m) },
+        { decimal.MaxValue, (0.275m, 869.36m) }
+    };
 
-            if (pay <= 1100)
-            {
-                inss = Math.Round(pay * 0.075m, 2);
-            }
-            else if (pay > 1100 && pay <= 2203.48m)
-            {
-                inss = Math.Round(pay * 0.09m, 2);
-            }
-            else if (pay > 2203.48m && pay <= 3305.22m)
-            {
-                inss = Math.Round(pay * 0.12m, 2);
-            }
-            else if (pay > 3305.22m && pay <= 6433.57m)
-            {
-                inss = Math.Round(pay * 0.14m, 2);
-            }
-            else
-            {
-                inss = 751.99m;
-            }
+            // Calcula o INSS
+            var inss = CalcularInss(payroll.GrossSalary, faixasInss);
 
-            decimal PayBase = pay - inss;
+            // Calcula o salário base após o desconto do INSS
+            var payBase = Math.Round(payroll.GrossSalary - inss, 2);
 
-            //irrf
-            if (PayBase <= faixa1)
-            {
-                irrf = 0;
-            }
-            else if (PayBase > faixa1 && PayBase <= faixa2)
-            {
-                irrf = Math.Round(((PayBase * 0.075M) - 142.80M), 2);
-            }
-            else if (PayBase > faixa2 && PayBase <= faixa3)
-            {
-                irrf = Math.Round(((PayBase * 0.15m) - 354.08M), 2);
-            }
-            else if (PayBase > faixa3 && PayBase <= faixa4)
-            {
-                irrf = Math.Round(((PayBase * 0.225M) - 636.13M), 2);
-            }
-            else
-            {
-                irrf = Math.Round((PayBase * 0.275m) - 869.36m, 2);
-            }
+            // Calcula o IRRF sobre o salário base
+            var irrf = CalcularIrrf(payBase, faixasIrrf);
 
-            decimal netSalary = Math.Round(PayBase - irrf, 2);
+            // Calcula o salário líquido
+            var netSalary = Math.Round(payBase - irrf, 2);
 
+            // Preenche os valores no objeto PayrollDto
             payroll.NetSalary = netSalary;
             payroll.INSS = inss;
-            payroll.Fgts = fgts;
+            payroll.Fgts = Math.Round((payroll.GrossSalary * 8) / 100, 2);
 
+            // Cria uma instância da entidade Payroll
             var payrollEntity = new Payroll
             {
                 GrossSalary = payroll.GrossSalary,
@@ -96,15 +74,45 @@ namespace Course.Services
                 // Preencha outros campos da entidade Payroll conforme necessário
             };
 
+            // Adiciona a entidade ao contexto e salva as alterações
             _folhacontext.Add(payrollEntity);
             await _folhacontext.SaveChangesAsync();
-            return pay;
+
+            return netSalary;
+        }
+
+        private decimal CalcularInss(decimal salario, Dictionary<decimal, decimal> faixas)
+        {
+            foreach (var faixa in faixas)
+            {
+                if (salario <= faixa.Key)
+                {
+                    return Math.Round(salario * faixa.Value, 2);
+                }
+            }
+
+            return 0;
+        }
+
+        private decimal CalcularIrrf(decimal salarioBase, Dictionary<decimal, (decimal Aliquota, decimal Deducao)> faixas)
+        {
+            foreach (var faixa in faixas)
+            {
+                if (salarioBase <= faixa.Key)
+                {
+                    var aliquota = faixa.Value.Aliquota;
+                    var deducao = faixa.Value.Deducao;
+                    return Math.Round((salarioBase * aliquota) - deducao, 2);
+                }
+            }
+
+            return 0;
         }
 
 
         public async Task<PagedResult<Payroll>> GetPayrollAsync(int pageNumber, int pageSize)
         {
-            var result = _folhacontext.Payrolls.OrderBy(x => x.Id);// fazendo um retorno mas dinamico obs corrigir no user service.
+            var result = _folhacontext.Payrolls.OrderBy(x => x.User.UserName);// fazendo um retorno mas dinamico obs corrigir no user service.
             var count = await result.CountAsync();
 
             var item = await result.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -120,6 +128,11 @@ namespace Course.Services
 
             return pagedResult;
         }
+
+        //public async Task<string> PayrollHtml()
+        //{
+
+        //}
 
     }
 }

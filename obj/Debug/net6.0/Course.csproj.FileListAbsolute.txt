@@ -90,3 +90,4 @@ C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\System.Id
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\DinkToPdf.dll
