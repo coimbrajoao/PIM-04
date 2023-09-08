@@ -73,7 +73,7 @@ namespace Course.Services
             return result;
         }
 
-        public async Task<User> Update(int id, User userupdates)
+        public async Task<User> Update(int id, UserUpdateDto userupdates)
         {
             var user = await  _folhaContext.FindAsync<User>(id);
             if(user == null)
@@ -84,7 +84,9 @@ namespace Course.Services
             user.Email = userupdates.Email;
             user.UserName = userupdates.UserName;
             user.PhoneNumber = userupdates.PhoneNumber;
-            user.PasswordHash = userupdates.PasswordHash;
+            user.City = userupdates.City;
+            user.Logadouro = userupdates.Logadouro;
+            
 
             await _folhaContext.SaveChangesAsync();
             return user;

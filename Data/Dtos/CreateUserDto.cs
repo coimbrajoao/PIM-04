@@ -9,6 +9,12 @@ namespace Course.Data.Dtos
         public string UserName { get; set; }
 
         [Required]
+        public string UserEmail { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]// camo tratado como senha
         public string Password { get; set; }
 
@@ -42,6 +48,7 @@ namespace Course.Data.Dtos
         [Required]
         public string Cidade { get; set; } = null!;
         [Required]
+        [MaxLength(2)]
         public string Uf { get; set; } = null!;
 
         public string Genero { get; set; } = null!;

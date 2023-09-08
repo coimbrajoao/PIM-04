@@ -19,7 +19,7 @@ namespace Course.Controllers
             _UserService = registerUser;
         }
 
-        [HttpPost ("/Cadastro")]
+        [HttpPost ("Cadastro")]
         public async Task< IActionResult> Register(CreateUserDto dto)
         {
             await _UserService.Register(dto);
@@ -28,7 +28,7 @@ namespace Course.Controllers
         }
 
         [HttpGet]
-        [Route ("/view")]
+        [Route ("view")]
         public async Task<IActionResult> ViewAllUsers()
         {
             int page = 1;
@@ -38,7 +38,7 @@ namespace Course.Controllers
         }
 
         [HttpGet]
-        [Route("/view{id}")]
+        [Route("view{id}")]
         public async Task<IActionResult> Details(int id)
         {
             var user= await _UserService.FindById(id);
@@ -50,8 +50,8 @@ namespace Course.Controllers
         }
 
         [HttpPut]
-        [Route("/{id}")]
-        public async Task<IActionResult> Edit(int id,User userupdate)
+        [Route("Edit")]
+        public async Task<IActionResult> Edit(int id,UserUpdateDto userupdate)
         {
             var user = await _UserService.Update(id,userupdate);
             if (user == null)
@@ -63,7 +63,7 @@ namespace Course.Controllers
         }
 
         [HttpDelete]
-        [Route("/{id}")]
+        [Route("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _UserService.Delete(id);
