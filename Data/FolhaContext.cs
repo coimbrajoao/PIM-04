@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Course.Data
 {
@@ -14,6 +15,8 @@ namespace Course.Data
         public DbSet<User> Users { get; set; }
         
         public DbSet<Payroll> Payrolls { get; set; }
+
+        public DbSet<TimeClock> TimeClocks { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -26,7 +29,7 @@ namespace Course.Data
             modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
             modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
-
+            modelBuilder.Entity<TimeClock>().ToTable("TimeClock");
             // Definir outros relacionamentos ou configurações do modelo, se necessário
         }
 

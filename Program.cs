@@ -39,6 +39,8 @@ internal class Program
 
         builder.Services.AddScoped<PayrollService>();
 
+        builder.Services.AddScoped<TimeClockService>();
+
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         builder.Services.AddSingleton<IAuthorizationHandler, IdadeAuthorization>();

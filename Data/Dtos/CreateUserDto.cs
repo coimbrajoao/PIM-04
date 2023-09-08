@@ -52,5 +52,9 @@ namespace Course.Data.Dtos
         public string Uf { get; set; } = null!;
 
         public string Genero { get; set; } = null!;
+
+        [Required]
+        [MaxLength (1)]
+        public string Status { get; set; } = null!;
     }
 }
