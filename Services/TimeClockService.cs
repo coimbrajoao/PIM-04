@@ -33,15 +33,16 @@ namespace Course.Services
             return DateTime.Now;
         }
 
-        public async Task<PagedResult<TimeClock>> GetPagedResultAsync(int PageNumber, int PageSize, TimeClockDto dto)
+        public async Task<PagedResult<TimeClock>> GetPagedResultAsync(int PageNumber, int PageSize, int userId)
         {
-            // Filtra os registros de TimeClock pelo userId
-            var result = await _folhaContext.TimeClocks.Where(x => x.UserId == dto.UserId) 
-                .OrderBy(x => x.IdTimeclock).ToListAsync();
+            var query = _folhaContext.TimeClocks.Where(x => x.UserId == userId);
 
-            var count = result.Count();
+            var count = await query.CountAsync();
 
-            var items = result.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
+            var items = await query.OrderBy(x => x.IdTimeclock)
+                .Skip((PageNumber - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
 
             var pagedResult = new PagedResult<TimeClock>()
             {

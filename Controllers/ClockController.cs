@@ -25,13 +25,13 @@ namespace Course.Controllers
 
         [HttpGet]
         [Route("View{id}")]
-        public async Task<IActionResult> ViewTimeClock(TimeClockDto dto)
+        public async Task<IActionResult> ViewTimeClock(int id)
         {
             try
             {
-            int Pagesize = 10;
+            int Pagesize = 1;
             int PageNumb = 10;
-            var result = await _timeClockService.GetPagedResultAsync(PageNumb,Pagesize,dto);
+            var result = await _timeClockService.GetPagedResultAsync(PageNumb,Pagesize, id);
             return Ok(result);
             }catch (Exception ex)
             {
