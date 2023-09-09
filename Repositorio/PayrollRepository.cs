@@ -1,12 +1,16 @@
-﻿using Course.IRepositorios;
+﻿using Course.Data;
+using Course.IRepositorios;
 
 namespace Course.Repositorio
 {
     public class PayrollRepository<T> : IPayroll<T> where T : class
     {
+
+        private FolhaContext folhaContext;
+        
         public Task<T> CreateAsync(T item)
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task<T> DeleteAsync(T item)

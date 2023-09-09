@@ -38,11 +38,12 @@ namespace Course.Services
             var query = _folhaContext.TimeClocks.Where(x => x.UserId == userId);
 
             var count = await query.CountAsync();
-
-            var items = await query.OrderBy(x => x.IdTimeclock)
-                .Skip((PageNumber - 1) * PageSize)
-                .Take(PageSize)
-                .ToListAsync();
+            var items = await query.OrderBy(x => x.IdTimeclock).ToListAsync();
+            Console.WriteLine(items);
+                // .Skip((PageNumber - 1) * PageSize)
+                // .Take(PageSize)
+                // .ToListAsync();
+            
 
             var pagedResult = new PagedResult<TimeClock>()
             {

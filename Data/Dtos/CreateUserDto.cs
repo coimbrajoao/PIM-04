@@ -25,7 +25,9 @@ namespace Course.Data.Dtos
         [Required]
         public DateTime DateBirth { get; set; }
 
-
+        [Required]
+        public string PhoneNumber {get; set;}
+        
         [Required]
         public string CPF { get; set; } = null!;
 
@@ -45,8 +47,10 @@ namespace Course.Data.Dtos
         public int? Numero { get; set; }
 
         public int? Complemento { get; set; }
+        
         [Required]
-        public string Cidade { get; set; } = null!;
+        public string City {get; set; } = null!;
+        
         [Required]
         [MaxLength(2)]
         public string Uf { get; set; } = null!;

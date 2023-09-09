@@ -22,8 +22,8 @@ namespace Course.Controllers
         [HttpPost ("Cadastro")]
         public async Task< IActionResult> Register(CreateUserDto dto)
         {
+            Console.WriteLine(dto.UserEmail);
             await _UserService.Register(dto);
-            
             return Ok();
         }
 
@@ -32,7 +32,7 @@ namespace Course.Controllers
         public async Task<IActionResult> ViewAllUsers()
         {
             int page = 1;
-            int pageSize = 10;
+            int pageSize = 1;
             var users = await _UserService.GetPagedResultAsync(page, pageSize);
             return Ok(users);
         }

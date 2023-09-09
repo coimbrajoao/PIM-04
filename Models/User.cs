@@ -16,15 +16,13 @@ namespace Course.Models
 
         public int Matricula { get; set; }
 
-        public string Email { get; set; }
+        public string UserEmail { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public string Logadouro { get; set; }
+        public string Logradouro { get; set; }
 
-        public int NumberHome { get; set; }
-
-        public string City { get; set; }
+        public int Numero { get; set; }
 
         public string Status { get; set; }
 

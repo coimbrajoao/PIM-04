@@ -3,6 +3,7 @@ using System;
 using Course.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.Migrations
 {
     [DbContext(typeof(FolhaContext))]
-    partial class FolhaContextModelSnapshot : ModelSnapshot
+    [Migration("20230909183922_Teste servidor do abner")]
+    partial class Testeservidordoabner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,6 +81,10 @@ namespace Course.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
@@ -87,6 +93,7 @@ namespace Course.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
@@ -99,7 +106,7 @@ namespace Course.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Logradouro")
+                    b.Property<string>("Logadouro")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -118,7 +125,7 @@ namespace Course.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<int>("Numero")
+                    b.Property<int>("NumberHome")
                         .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
@@ -143,10 +150,6 @@ namespace Course.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)

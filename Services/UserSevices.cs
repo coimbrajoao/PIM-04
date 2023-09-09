@@ -17,6 +17,7 @@ namespace Course.Services
         private TokenService _tokenService;
         private FolhaContext _folhaContext;
 
+        
         public UserServices(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService, FolhaContext folhaContext)
         {
             _mapper = mapper;
@@ -28,8 +29,16 @@ namespace Course.Services
 
         public async Task Register(CreateUserDto dto)
         {
-            User user = _mapper.Map<User>(dto);
-            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+            User user = new User();
+
+            user = _mapper.Map<User>(dto);
+        
+            try{
+                IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+            }catch(Exception e){
+                Console.WriteLine("Usuario tentando cadastrar => " + user.Email);
+                Console.Error.Write("ERROOOO SEUS VAGABUNDOS =>>>>> " + e.Message);
+            }
             // Tratar o resultado da criação do usuário, se necessário.
         }
 
@@ -84,8 +93,8 @@ namespace Course.Services
             user.Email = userupdates.Email;
             user.UserName = userupdates.UserName;
             user.PhoneNumber = userupdates.PhoneNumber;
-            user.City = userupdates.City;
-            user.Logadouro = userupdates.Logadouro;
+            //user.City = userupdates.City;
+            user.Logradouro = userupdates.Logradouro;
             
 
             await _folhaContext.SaveChangesAsync();
