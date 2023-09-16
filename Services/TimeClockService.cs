@@ -35,8 +35,17 @@ namespace Course.Services
 
         public async Task<PagedResult<TimeClock>> GetPagedResultAsync(int PageNumber, int PageSize, int userId)
         {
-            var query = _folhaContext.TimeClocks.Where(x => x.UserId == userId);
-
+            var query = from timeclock in _folhaContext.TimeClocks
+                        join user in _folhaContext.Users on timeclock.UserId equals userId
+                        orderby user.UserName
+                        select new TimeClock
+                        {
+                            IdTimeclock = timeclock.IdTimeclock,
+                            UserId = timeclock.UserId,
+                            TimeOffset = timeclock.TimeOffset,
+                            UserName = user.UserName
+                        };
+            
             var count = await query.CountAsync();
             var items = await query.OrderBy(x => x.IdTimeclock).ToListAsync();
             Console.WriteLine(items);

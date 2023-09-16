@@ -25,6 +25,7 @@ namespace Course.Models
         public int Numero { get; set; }
 
         public string Status { get; set; }
+        public string CPF { get; set; }
 
         public ICollection<Payroll> Payrolls { get; set; }
 

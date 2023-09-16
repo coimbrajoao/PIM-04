@@ -1,6 +1,9 @@
 ﻿using Course.Data;
 using Course.Data.Dtos;
 using Course.Models;
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
@@ -10,11 +13,13 @@ namespace Course.Services
     public class PayrollService
     {
         private FolhaContext _folhacontext;
+        private readonly IConverter converter;
 
-
-        public PayrollService(FolhaContext folhacontext)
+        public PayrollService(FolhaContext folhacontext, IConverter _converter)
         {
             _folhacontext = folhacontext;
+            converter = _converter;
+
         }
 
         public async Task<decimal> PayrollGeneration(PayrollDto payroll)
@@ -112,7 +117,20 @@ namespace Course.Services
 
         public async Task<PagedResult<Payroll>> GetPayrollAsync(int pageNumber, int pageSize)
         {
-            var result = _folhacontext.Payrolls.OrderBy(x => x.User.UserName);// fazendo um retorno mas dinamico obs corrigir no user service.
+            var result = from payroll in _folhacontext.Payrolls
+                         join user in _folhacontext.Users on payroll.UserId equals user.Id
+                         orderby user.Name
+                         select new Payroll
+                         {
+                             Id = payroll.Id,
+                             GrossSalary = payroll.GrossSalary,
+                             NetSalary = payroll.NetSalary,
+                             Fgts = payroll.Fgts,
+                             INSS = payroll.INSS,
+                             UserId = payroll.UserId,
+                             UserName = user.Name
+                             //CPF = user.CPF,
+                         };// fazendo um retorno mas dinamico obs corrigir no user service.
             var count = await result.CountAsync();
 
             var item = await result.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -129,10 +147,53 @@ namespace Course.Services
             return pagedResult;
         }
 
-        //public async Task<string> PayrollHtml()
-        //{
+        public Byte[] PayrollPDgf(string HtmlContent)
+        {
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4,
+                Margins = new MarginSettings { Top = 10, Bottom = 10, Left = 10, Right = 10 },
+                DocumentTitle = "Holerite"
+            };
 
-        //}
+            var objectSeetings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = HtmlContent,
+                WebSettings = { DefaultEncoding = "utf -8" },
+                HeaderSettings = { FontSize = 12, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 },
+                FooterSettings = { FontSize = 12, Right = "" + DateTime.Now.Year }
+            };
+            var document = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSeetings }
+            }; 
+            
+            var result =  converter.Convert(document);
+            return result;
+        }
 
+        public async Task<Payroll> FindById(int id)
+        {
+            var result = from payroll in _folhacontext.Payrolls
+                         join user in _folhacontext.Users on payroll.UserId equals user.Id
+                         orderby user.Name
+                         select new Payroll
+                         {
+                             Id = payroll.Id,
+                             GrossSalary = payroll.GrossSalary,
+                             NetSalary = payroll.NetSalary,
+                             Fgts = payroll.Fgts,
+                             INSS = payroll.INSS,
+                             UserId = payroll.UserId,
+                             UserName = user.Name
+                            // CPF = user.CPF
+                         };
+            var item = result.FirstOrDefault();
+            return item;
+        }
     }
 }

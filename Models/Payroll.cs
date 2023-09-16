@@ -19,5 +19,8 @@ namespace Course.Models
         public int? UserId { get; set; }
         
         public User User { get; set; }
+        
+        public string UserName { get; set; }
+        public string CPF { get; set; }
     }
 }

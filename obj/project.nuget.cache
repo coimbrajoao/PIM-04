@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "twqHBCA/azGWOAtGr3icJ3e4hhtGp25QdPzcHGjLaAA+q5t1Nec/JGMwxY2ovLUgG62q/oAquUZvz/ZSdI88Uw==",
+  "dgSpecHash": "RQVqv4tHLF7fGs65uYWUuczrbeeD+WwE7gWa8+w3m50RhB0xkJ64z2G+LeklEbElBuvhKNC/UcooA73XKj4t4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\coimb\\OneDrive\\Documentos\\PIM\\PIM-API-Csharp\\Course.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coimb\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\dinktopdf\\1.0.8\\dinktopdf.1.0.8.nupkg.sha512",
+    "C:\\Users\\coimb\\.nuget\\packages\\dinktopdfcopy\\1.0.0\\dinktopdfcopy.1.0.0.nupkg.sha512",
+    "C:\\Users\\coimb\\.nuget\\packages\\dinktopdfincludesdependencies\\1.0.8\\dinktopdfincludesdependencies.1.0.8.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.14\\microsoft.aspnetcore.authentication.jwtbearer.6.0.14.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
