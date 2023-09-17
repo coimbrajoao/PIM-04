@@ -26,6 +26,7 @@ namespace Course.Models
 
         public string Status { get; set; }
 
+
         public ICollection<Payroll> Payrolls { get; set; }
 
     }

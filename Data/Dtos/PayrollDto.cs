@@ -5,7 +5,9 @@ namespace Course.Data.Dtos
 {
     public class PayrollDto
     {
-         [Required]
+        public decimal Desc;
+
+        [Required]
         public decimal GrossSalary { get; set; }
    
         [Required]

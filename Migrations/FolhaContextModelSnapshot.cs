@@ -25,6 +25,9 @@ namespace Course.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Desc")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<decimal>("Fgts")
                         .HasColumnType("decimal(65,30)");
 
@@ -39,6 +42,10 @@ namespace Course.Migrations
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("date_of_competence")
                         .HasColumnType("datetime(6)");

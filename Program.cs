@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 internal class Program
 {
@@ -44,6 +46,8 @@ internal class Program
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         builder.Services.AddSingleton<IAuthorizationHandler, IdadeAuthorization>();
+
+        builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter( new PdfTools()));
 
         builder.Services.AddControllers();
         builder.Services.AddMvc();
