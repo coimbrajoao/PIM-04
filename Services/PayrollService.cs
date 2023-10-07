@@ -139,6 +139,7 @@ namespace Course.Services
                              Fgts = Payrol.Fgts,
                              UserName = user.Name,
                              Desc = Payrol.Desc
+                             
                          };
                          // fazendo um retorno mas dinamico obs corrigir no user service.
             var count = await result.CountAsync();

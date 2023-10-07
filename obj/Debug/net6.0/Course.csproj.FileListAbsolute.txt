@@ -101,3 +101,7 @@ C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\runtimes\
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\runtimes\osx-x86\native\libwkhtmltox.dylib
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\runtimes\win7-x64\native\libwkhtmltox.dll
 C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\runtimes\win7-x86\native\libwkhtmltox.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\coimb\OneDrive\Documentos\PIM\PIM-API-Csharp\bin\Debug\net6.0\Swashbuckle.Core.dll

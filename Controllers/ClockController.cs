@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Course.Controllers
 {
     [ApiController]
-    [Route("TimeClock")]
+    [Route("api/v1/[controller]")]
     public class ClockController : Controller
     {
         private TimeClockService _timeClockService;
@@ -16,7 +16,7 @@ namespace Course.Controllers
         }
 
         [HttpPost]
-        [Route("AddTime")]
+        
         public async Task<IActionResult> AddTime(TimeClockDto dto)//metodo para adicionar horario no relogio
         {
             var resul = await _timeClockService.Time(dto);
@@ -24,7 +24,7 @@ namespace Course.Controllers
         }
 
         [HttpGet]
-        [Route("View{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> ViewTimeClock(int id)
         {
             try
@@ -34,6 +34,20 @@ namespace Course.Controllers
             var result = await _timeClockService.GetPagedResultAsync(PageNumb,Pagesize, id);
             return Ok(result);
             }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteTimeClock(int id)
+        {
+            try
+            {
+                var result = await _timeClockService.Delete(id);
+                return Ok(result);
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

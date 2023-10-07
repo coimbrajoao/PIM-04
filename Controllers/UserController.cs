@@ -9,7 +9,7 @@ namespace Course.Controllers
 {
 
     [ApiController]
-    [Route("user")]//criando rota para web
+    [Route("api/v1/[controller]")]//criando rota para web
     public class UserController : Controller
     {
         private UserServices _UserService;
@@ -19,7 +19,7 @@ namespace Course.Controllers
             _UserService = registerUser;
         }
 
-        [HttpPost ("Cadastro")]
+        [HttpPost]
         public async Task< IActionResult> Register(CreateUserDto dto)
         {
             Console.WriteLine(dto.UserEmail);
@@ -28,17 +28,17 @@ namespace Course.Controllers
         }
 
         [HttpGet]
-        [Route ("view")]
+        
         public async Task<IActionResult> ViewAllUsers()
         {
             int page = 1;
-            int pageSize = 1;
+            int pageSize = 10;
             var users = await _UserService.GetPagedResultAsync(page, pageSize);
             return Ok(users);
         }
 
         [HttpGet]
-        [Route("view{id}")]
+        [Route("id")]
         public async Task<IActionResult> Details(int id)
         {
             var user= await _UserService.FindById(id);
@@ -50,7 +50,7 @@ namespace Course.Controllers
         }
 
         [HttpPut]
-        [Route("Edit")]
+        
         public async Task<IActionResult> Edit(int id,UserUpdateDto userupdate)
         {
             var user = await _UserService.Update(id,userupdate);
@@ -63,7 +63,7 @@ namespace Course.Controllers
         }
 
         [HttpDelete]
-        [Route("Delete")]
+        
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _UserService.Delete(id);

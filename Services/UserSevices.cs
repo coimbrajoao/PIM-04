@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Course.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Course.Services
 {
@@ -16,15 +18,16 @@ namespace Course.Services
         private SignInManager<User> _signInManager;
         private TokenService _tokenService;
         private FolhaContext _folhaContext;
+        private UserRepository _UserRepository;
 
-        
-        public UserServices(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService, FolhaContext folhaContext)
+        public UserServices(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService, FolhaContext folhaContext, UserRepository userRepository)
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             _folhaContext = folhaContext;
+            _UserRepository = userRepository;
         }
 
         public async Task Register(CreateUserDto dto)
@@ -32,10 +35,13 @@ namespace Course.Services
             User user = new User();
 
             user = _mapper.Map<User>(dto);
-        
-            try{
+
+            try
+            {
                 IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Usuario tentando cadastrar => " + user.Email);
                 Console.Error.Write("ERROOOO SEUS VAGABUNDOS =>>>>> " + e.Message);
             }
@@ -51,7 +57,7 @@ namespace Course.Services
                 throw new ApplicationException("Usuario não autenticado");
             }
 
-            var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName== dto.UserName.ToUpper());
+            var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == dto.UserName.ToUpper());
 
             var token = _tokenService.GenerateToken(user);
 
@@ -78,41 +84,67 @@ namespace Course.Services
 
         public async Task<User> FindById(int id)
         {
-            var result = await _folhaContext.Users.FindAsync(id);
+            var result = await _UserRepository.GetUserByIdAsync(id);
             return result;
         }
 
         public async Task<User> Update(int id, UserUpdateDto userupdates)
         {
-            var user = await  _folhaContext.FindAsync<User>(id);
-            if(user == null)
+            //var user = await _folhaContext.FindAsync<User>(id);
+            try
             {
-                throw new ApplicationException("Usuario nao encontrado");
+                var user = await _UserRepository.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    throw new ApplicationException("Usuario nao encontrado");
+                }
+
+                user.Email = userupdates.Email;
+                user.UserName = userupdates.UserName;
+                user.PhoneNumber = userupdates.PhoneNumber;
+                user.Name = userupdates.Name;
+                user.Logradouro = userupdates.Logradouro;
+                try
+                {
+
+
+                    // await _folhaContext.SaveChangesAsync();
+                    await _UserRepository.UpdateUserAsync(user);
+                    return user;
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Falha ao editar o usuario");
+                }
             }
-
-            user.Email = userupdates.Email;
-            user.UserName = userupdates.UserName;
-            user.PhoneNumber = userupdates.PhoneNumber;
-            //user.City = userupdates.City;
-            user.Logradouro = userupdates.Logradouro;
-            
-
-            await _folhaContext.SaveChangesAsync();
-            return user;
+            catch (Exception ex)
+            {
+                throw new Exception("Nao tem usuario selecionado para realizar a Edição");
+            }
 
         }
 
         public async Task<User> Delete(int id)
         {
-            var user = await _folhaContext.FindAsync<User>(id);
-            if(user == null)
+            //var user = await _folhaContext.FindAsync<User>(id);
+            try
             {
-                throw new ApplicationException("Usuário não encontrado");
-            }
-            _folhaContext.Remove(user);
-            await _folhaContext.SaveChangesAsync();
+                var user = await _UserRepository.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    throw new ApplicationException("Usuário não encontrado");
+                }
 
-            return user;
+                //_folhaContext.Remove(user);
+                //await _folhaContext.SaveChangesAsync();
+                await _UserRepository.DeleteUserAsync(id);
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("O usuario Tem movimentos de folha e não pode ser excluido");
+            }
         }
     }
 }

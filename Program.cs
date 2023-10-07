@@ -19,6 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DinkToPdf.Contracts;
 using DinkToPdf;
+using Course.Repository;
+using Microsoft.Extensions.Options;
+using Swashbuckle.Swagger;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
 internal class Program
 {
@@ -47,8 +51,9 @@ internal class Program
 
         builder.Services.AddSingleton<IAuthorizationHandler, IdadeAuthorization>();
 
-        builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter( new PdfTools()));
+        builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
+        builder.Services.AddScoped<UserRepository>();
         builder.Services.AddControllers();
         builder.Services.AddMvc();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -76,9 +81,10 @@ internal class Program
         {
             options.AddPolicy("IdadeMinima", policy => policy.AddRequirements(new IdadeMinima(18)));
         });
-       
+
 
         var app = builder.Build();
+
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -86,13 +92,20 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        
+
 
         app.UseHttpsRedirection();
 
+        app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
 
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "customRoute",
+                pattern: "api/v1/{contrrler=Values}/{action=Get}/{id?}");
+        });
         app.MapControllers();
         app.Run();
     }

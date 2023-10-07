@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Course.Controllers
 {
-    [Route("Payroll")]
     [ApiController]
+    [Route("api/v1/[controller]")]
     public class PayrollController : ControllerBase
     {
         private PayrollService _PayrollService;
@@ -20,7 +20,7 @@ namespace Course.Controllers
 
 
         // GET api/<PayrollController>/5
-        [HttpGet("view")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             int pageSize = 10;
@@ -30,7 +30,7 @@ namespace Course.Controllers
         }
 
         // POST api/<PayrollController>
-        [HttpPost("generate")]
+        [HttpPost]
         public async Task<IActionResult> GeneratePayroll(PayrollDto payrollDto)
         {
             try
@@ -46,7 +46,7 @@ namespace Course.Controllers
 
 
         [HttpPost]
-        [Route("/generationpdf")]
+        [Route("id")]
         public async Task<IActionResult> GenerationPayrollPdf(int id)
         {
             var payrollInfo = await _PayrollService.FindByID(id);

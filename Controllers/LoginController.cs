@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Course.Controllers
 {
     [ApiController]
-    [Route("Login")]//criando rota para web
+    [Route("api/v1/[controller]")]//criando rota para web
     public class LoginController : Controller
     {
         private UserServices _UserService;
@@ -15,7 +15,7 @@ namespace Course.Controllers
             _UserService = userService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginUserDto dto)
         {
           var token =   await _UserService.Login(dto);
