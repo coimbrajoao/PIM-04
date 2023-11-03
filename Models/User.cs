@@ -14,15 +14,15 @@ namespace Course.Models
 
         public DateTime Datebirth { get; set; }
 
-        public int Matricula { get; set; }
+        public int registration { get; set; }
 
         public string UserEmail { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public string Logradouro { get; set; }
+        public string Publicplace { get; set; }
 
-        public int Numero { get; set; }
+        public int Number { get; set; }
 
         public string Status { get; set; }
 

@@ -104,7 +104,7 @@ internal class Program
         {
             endpoints.MapControllerRoute(
                 name: "customRoute",
-                pattern: "api/v1/{contrrler=Values}/{action=Get}/{id?}");
+                pattern: "api/v1/{controler=Values}/{action=Get}/{id?}");
         });
         app.MapControllers();
         app.Run();

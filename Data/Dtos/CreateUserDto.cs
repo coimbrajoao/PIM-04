@@ -25,6 +25,10 @@ namespace Course.Data.Dtos
         [Required]
         public DateTime DateBirth { get; set; }
 
+
+        [Required]
+        public DateTime Admissiondate { get; set; }
+
         [Required]
         public string PhoneNumber {get; set;}
         
@@ -32,7 +36,7 @@ namespace Course.Data.Dtos
         public string CPF { get; set; } = null!;
 
         [Required]
-        public int Matricula { get; set; }
+        public int Registration { get; set; }
         [Required]
         public string Rg { get; set; } = null!;
         [Required]
@@ -40,13 +44,13 @@ namespace Course.Data.Dtos
         [Required]
         public string Pis { get; set; } = null!;
         [Required]
-        public string Logradouro { get; set; } = null!;
+        public string Publicplace { get; set; } = null!;
         [Required]
-        public string Bairro { get; set; } = null!;
+        public string Neighborhood { get; set; } = null!;
 
-        public int? Numero { get; set; }
+        public int? Number { get; set; }
 
-        public int? Complemento { get; set; }
+        public int? Complement{ get; set; }
         
         [Required]
         public string City {get; set; } = null!;
@@ -55,7 +59,7 @@ namespace Course.Data.Dtos
         [MaxLength(2)]
         public string Uf { get; set; } = null!;
 
-        public string Genero { get; set; } = null!;
+        public string Gender { get; set; } = null!;
 
         [Required]
         [MaxLength (1)]

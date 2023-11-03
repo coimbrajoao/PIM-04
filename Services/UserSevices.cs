@@ -2,12 +2,9 @@
 using Course.Data;
 using Course.Data.Dtos;
 using Course.Models;
-using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Course.Repository;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Course.Services
 {
@@ -103,7 +100,7 @@ namespace Course.Services
                 user.UserName = userupdates.UserName;
                 user.PhoneNumber = userupdates.PhoneNumber;
                 user.Name = userupdates.Name;
-                user.Logradouro = userupdates.Logradouro;
+                user.Publicplace = userupdates.Publicplace;
                 try
                 {
 
