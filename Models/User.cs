@@ -7,7 +7,6 @@ namespace Course.Models
 {
     public class User : IdentityUser<int>
     {
-
         public User() : base() { }
 
         public string Name { get; set; }
