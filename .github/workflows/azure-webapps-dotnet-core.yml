@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up .NET Core
+      - name: Set up .NET Core SDK 5.0.0
         uses: actions/setup-dotnet@v2
         with:
          dotnet-version: 5.0.0
