@@ -29,10 +29,10 @@ namespace Course.Controllers
 
         [HttpGet]
         
-        public async Task<IActionResult> ViewAllUsers()
+        public async Task<IActionResult> ViewAllUsers(int pag, int pagesize)
         {
-            int page = 1;
-            int pageSize = 10;
+            int page = pag;
+            int pageSize = pagesize;
             var users = await _UserService.GetPagedResultAsync(page, pageSize);
             return Ok(users);
         }

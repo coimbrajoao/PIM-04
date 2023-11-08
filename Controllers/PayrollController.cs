@@ -21,10 +21,10 @@ namespace Course.Controllers
 
         // GET api/<PayrollController>/5
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int pagesize, int pag)
         {
-            int pageSize = 10;
-            int page = 1;
+            int pageSize = pagesize;
+            int page = pag ;
             var result = await _PayrollService.GetPayrollAsync(page, pageSize);
             return Ok(result);
         }
