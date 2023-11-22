@@ -64,5 +64,12 @@ namespace Course.Data.Dtos
         [Required]
         [MaxLength (1)]
         public string Status { get; set; } = null!;
+
+        [Required]
+        [MaxLength(1)]
+        public string LevelAcesse { get; set; } = null!;
+
+        [Required]
+        public decimal GrossSalary { get; set; }
     }
 }

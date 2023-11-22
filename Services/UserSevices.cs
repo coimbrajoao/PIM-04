@@ -40,7 +40,7 @@ namespace Course.Services
             catch (Exception e)
             {
                 Console.WriteLine("Usuario tentando cadastrar => " + user.Email);
-                Console.Error.Write("ERROOOO SEUS VAGABUNDOS =>>>>> " + e.Message);
+                
             }
             // Tratar o resultado da criação do usuário, se necessário.
         }

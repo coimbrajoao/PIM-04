@@ -7,11 +7,9 @@ namespace Course.Data.Dtos
     {
         public decimal Desc;
 
+        
         [Required]
-        public decimal GrossSalary { get; set; }
-   
-        [Required]
-        public DateTime date_of_competence { get; set; }
+        public DateTime Date_of_competence { get; set; }
 
         [Required]
         public int? UserId { get; set; }
