@@ -76,6 +76,15 @@ internal class Program
             };
         });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAnyOrigin", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+        });
 
         builder.Services.AddAuthorization(options =>
         {
@@ -93,6 +102,7 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.UseCors("AllowAnyOrigin");
 
         app.UseHttpsRedirection();
 

@@ -13,7 +13,7 @@ namespace Course.Models
 
         public DateTime Datebirth { get; set; }
 
-        public int registration { get; set; }
+        public int Registration { get; set; }
 
         public string UserEmail { get; set; }
 
@@ -30,6 +30,15 @@ namespace Course.Models
         public decimal GrossSalary { get; set; }
 
         public string Office { get; set; }
+
+        public string Rg { get; set; }
+        public string CPF { get; set; } = null!;
+        [Required]
+        public string Nis { get; set; } = null!;
+        [Required]
+        public string Pis { get; set; } = null!;
+
+        public DateTime Admissiondate { get; set; }
         public ICollection<Payroll> Payrolls { get; set; }
 
     }

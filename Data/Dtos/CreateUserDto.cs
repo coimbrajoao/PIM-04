@@ -36,7 +36,7 @@ namespace Course.Data.Dtos
         public string CPF { get; set; } = null!;
 
         [Required]
-        public int Registration { get; set; }
+        public int Registration { get; set; }//cep
         [Required]
         public string Rg { get; set; } = null!;
         [Required]
@@ -44,20 +44,20 @@ namespace Course.Data.Dtos
         [Required]
         public string Pis { get; set; } = null!;
         [Required]
-        public string Publicplace { get; set; } = null!;
+        public string Publicplace { get; set; } = null!;//rua
         [Required]
-        public string Neighborhood { get; set; } = null!;
+        public string Neighborhood { get; set; } = null!;//bairro
 
         public int? Number { get; set; }
 
         public int? Complement{ get; set; }
         
         [Required]
-        public string City {get; set; } = null!;
+        public string City {get; set; } = null!;//cidade
         
         [Required]
         [MaxLength(2)]
-        public string Uf { get; set; } = null!;
+        public string Uf { get; set; } = null!;//estado
 
         public string Gender { get; set; } = null!;
 
