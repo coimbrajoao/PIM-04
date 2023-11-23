@@ -3,6 +3,7 @@ using System;
 using Course.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.Migrations
 {
     [DbContext(typeof(FolhaContext))]
-    partial class FolhaContextModelSnapshot : ModelSnapshot
+    [Migration("20231123000546_Corrigindo PDF da folha e adicionando mais informaçoes no relogio")]
+    partial class CorrigindoPDFdafolhaeadicionandomaisinformaçoesnorelogio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

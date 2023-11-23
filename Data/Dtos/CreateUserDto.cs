@@ -70,6 +70,10 @@ namespace Course.Data.Dtos
         public string LevelAcesse { get; set; } = null!;
 
         [Required]
+        [Precision(18,2)]
         public decimal GrossSalary { get; set; }
+
+        [Required]
+        public string Office { get; set; } = null!;
     }
 }

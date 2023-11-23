@@ -28,6 +28,8 @@ namespace Course.Models
         public int levelAcesse {get; set; }
 
         public decimal GrossSalary { get; set; }
+
+        public string Office { get; set; }
         public ICollection<Payroll> Payrolls { get; set; }
 
     }

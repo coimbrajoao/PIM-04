@@ -1,10 +1,16 @@
-﻿namespace Course.Data.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Course.Data.Dtos
 {
     public class TimeClockDto
     {
-        public DateTime? Time { get; set;}
-        public DateTimeOffset? TimeOffset { get; set;}
+        [Required]
+        public DateTime Time { get; set; }
 
-        public int UserId { get; set;}
+        [Required]
+        public bool IsClockIn { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
     }
 }

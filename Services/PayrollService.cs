@@ -31,12 +31,14 @@ namespace Course.Services
                 }
 
                 decimal grossSalary = (
-                from User in _folhacontext.Users
-                where User.Id == payroll.UserId
-                select new
-                {
-                    grossSalary = User.GrossSalary
-                }).FirstOrDefault().grossSalary;
+                                     from User in _folhacontext.Users
+                                     where User.Id == payroll.UserId
+                                     select new
+                                     {
+                                         grossSalary = User.GrossSalary
+                                         
+
+                                     }).FirstOrDefault().grossSalary;
 
 
 
@@ -120,7 +122,9 @@ namespace Course.Services
                         INSS = inss,
                         Fgts = fgts,
                         UserName = user.Name, // Aqui você atribui o UserName com base nos dados do usuário
-                        Desc = irrf + inss
+                        Desc = irrf + inss,
+                        Office = user.Office
+                        
                     };
 
                     _folhacontext.Add(newPayroll);
@@ -136,7 +140,7 @@ namespace Course.Services
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-                await Console.Out.WriteLineAsync("Sem nada seus tanga atolada");
+
             }
         }
 
@@ -156,7 +160,8 @@ namespace Course.Services
                              INSS = Payrol.INSS,
                              Fgts = Payrol.Fgts,
                              UserName = user.Name,
-                             Desc = Payrol.Desc
+                             Desc = Payrol.Desc,
+                             date_of_competence = Payrol.date_of_competence
 
                          };
             // fazendo um retorno mas dinamico obs corrigir no user service.
@@ -193,7 +198,9 @@ namespace Course.Services
                          INSS = payroll.INSS,
                          Fgts = payroll.Fgts,
                          Desc = payroll.Desc,
-                         UserName = user.Name
+                         UserName = user.Name,
+                         Office = user.Office,
+                         date_of_competence = payroll.date_of_competence
                      }).FirstOrDefault();
 
             var item = result;
@@ -203,32 +210,40 @@ namespace Course.Services
 
         public byte[] GeneratePdf(string HtmlContent)
         {
-            var globalSettings = new GlobalSettings
+            try
             {
-                ColorMode = ColorMode.Color,
-                Orientation = Orientation.Portrait,
-                PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 10, Bottom = 10, Left = 10, Right = 10 },
-                DocumentTitle = "Holerite"
 
-            };
-            var ObjectSettings = new ObjectSettings
+                var globalSettings = new GlobalSettings
+                {
+                    ColorMode = ColorMode.Color,
+                    Orientation = Orientation.Portrait,
+                    PaperSize = PaperKind.A4,
+                    Margins = new MarginSettings { Top = 10, Bottom = 10, Left = 10, Right = 10 },
+                    DocumentTitle = "Holerite"
+
+                };
+                var ObjectSettings = new ObjectSettings
+                {
+                    PagesCount = true,
+                    HtmlContent = HtmlContent,
+                    //Page = _hostingEnvironment.ContentRootPath + "\\htmlpagenow.html",
+                    WebSettings = { DefaultEncoding = "utf-8" },
+                    HeaderSettings = { FontSize = 12, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 },
+                    FooterSettings = { FontSize = 12, Line = true, Right = "" + DateTime.Now.Year }
+                };
+
+                var document = new HtmlToPdfDocument()
+                {
+                    GlobalSettings = globalSettings,
+                    Objects = { ObjectSettings }
+                };
+
+                return _converter.Convert(document);
+            }
+            catch (Exception ex)
             {
-                PagesCount = true,
-                HtmlContent = HtmlContent,
-                //Page = _hostingEnvironment.ContentRootPath + "\\htmlpagenow.html",
-                WebSettings = { DefaultEncoding = "utf-8" },
-                HeaderSettings = { FontSize = 12, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 },
-                FooterSettings = { FontSize = 12, Line = true, Right = "" + DateTime.Now.Year }
-            };
-
-            var document = new HtmlToPdfDocument()
-            {
-                GlobalSettings = globalSettings,
-                Objects = { ObjectSettings }
-            };
-
-            return _converter.Convert(document);
+                throw new Exception();
+            }
         }
 
     }

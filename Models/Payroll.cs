@@ -21,5 +21,7 @@ namespace Course.Models
         public User User { get; set; }
         public string UserName { get; set; }
         public decimal Desc { get; set; }
+        
+        public string Office { get; set; }
     }
 }

@@ -26,7 +26,8 @@ namespace Course.Services
             var timeclock = new TimeClock//instanciando objeto para poder armazenar.
             {
                 UserId = clockDto.UserId,
-                TimeOffset = DateTimeOffset.Now
+                Time = clockDto.Time.ToLocalTime(),
+                IsClockIn = clockDto.IsClockIn
             };
             _folhaContext.TimeClocks.Add(timeclock);
 
@@ -90,7 +91,7 @@ namespace Course.Services
                     throw new ApplicationException("Frequencia não encontrada");
                 }
 
-                timeClock.TimeOffset = (DateTimeOffset)timeClockDto.TimeOffset;
+                timeClock.Time = timeClock.Time.ToLocalTime();
 
                 try
                 {

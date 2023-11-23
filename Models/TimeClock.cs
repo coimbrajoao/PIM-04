@@ -2,20 +2,27 @@
 
 namespace Course.Models
 {
+
+
     public class TimeClock
     {
         [Key]
-        
         public int IdTimeclock { get; set; }
+
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime Time { get; set; }
 
         [Required]
-        public DateTimeOffset TimeOffset { get; set;}
+        public bool IsClockIn { get; set; } // Indica se é uma marcação de entrada (true) ou saída (false)
 
-
-        public ICollection<User> Users { get; set; }
+        [Required]
         public int UserId { get; set; }
+        public User User { get; set; }
+
+
 
     }
+
+
 }
