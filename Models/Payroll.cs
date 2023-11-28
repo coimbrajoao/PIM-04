@@ -12,8 +12,10 @@ namespace Course.Models
         public decimal NetSalary { get; set; }
         public decimal Fgts { get; set; }
         public decimal INSS { get; set; }
-        
-        public DateTime date_of_competence { get; set; }
+
+        [Required]
+        [Column(TypeName = "datetime")]
+        public DateTime Date_of_competence { get; set; }
 
         [ForeignKey("UserId")]
         public int? UserId { get; set; }

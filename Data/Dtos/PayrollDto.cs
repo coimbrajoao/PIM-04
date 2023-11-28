@@ -10,6 +10,7 @@ namespace Course.Data.Dtos
         public decimal Desc;
                 
         [Required]
+        
         public DateTime Date_of_competence { get; set; }
 
         [Required]

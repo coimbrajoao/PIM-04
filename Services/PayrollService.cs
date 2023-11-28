@@ -11,7 +11,7 @@ namespace Course.Services
 {
     public class PayrollService
     {
-        private FolhaContext _folhacontext;
+        private readonly FolhaContext _folhacontext;
         private readonly IConverter _converter;
 
         public PayrollService(FolhaContext folhacontext, IConverter converter)
@@ -36,7 +36,7 @@ namespace Course.Services
                                      select new
                                      {
                                          grossSalary = User.GrossSalary
-                                         
+
 
                                      }).FirstOrDefault().grossSalary;
 
@@ -123,8 +123,9 @@ namespace Course.Services
                         Fgts = fgts,
                         UserName = user.Name, // Aqui você atribui o UserName com base nos dados do usuário
                         Desc = irrf + inss,
-                        Office = user.Office
-                        
+                        Office = user.Office,
+                        Date_of_competence = payroll.Date_of_competence
+
                     };
 
                     _folhacontext.Add(newPayroll);
@@ -161,7 +162,7 @@ namespace Course.Services
                              Fgts = Payrol.Fgts,
                              UserName = user.Name,
                              Desc = Payrol.Desc,
-                             date_of_competence = Payrol.date_of_competence
+                             Date_of_competence = Payrol.Date_of_competence
 
                          };
             // fazendo um retorno mas dinamico obs corrigir no user service.
@@ -200,7 +201,7 @@ namespace Course.Services
                          Desc = payroll.Desc,
                          UserName = user.Name,
                          Office = user.Office,
-                         date_of_competence = payroll.date_of_competence
+                         Date_of_competence = payroll.Date_of_competence
                      }).FirstOrDefault();
 
             var item = result;
@@ -242,9 +243,35 @@ namespace Course.Services
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception("Erro ao gerar o pdf", ex) ;
             }
         }
 
+        public async Task<Payroll> Delete(int id)
+        {
+            try
+            {
+
+                var payroll = await _folhacontext.Payrolls.FindAsync(id) ?? throw new ApplicationException("Folha nao encontrada");
+                var currentMonth = DateTime.Now.Month;
+                var currentYear = DateTime.Now.Year;
+
+                if (payroll.Date_of_competence.Month != currentMonth || payroll.Date_of_competence.Year != currentYear)
+                {
+                    throw new Exception("Não é possível excluir a folha de pagamento do mês atual");
+                }
+
+                _folhacontext.Payrolls.Remove(payroll);
+                await _folhacontext.SaveChangesAsync();
+                return payroll;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao deletar a folha de pagamento", ex);
+
+            }
+        }
     }
+
 }
+

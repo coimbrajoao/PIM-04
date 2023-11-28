@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gi1gopfxl8iUXqRUQ/zFtzCl9Pb7NrO86yGdpiKhQxCj1Xr1oW6Hj6fSvU5q0c3aziNbOVYvKKmzCOH9oUyYkw==",
+  "dgSpecHash": "tA+1175qH5jSckH570Ii8ChsXmxthAn5FfFizQ3flAFSdg6H274cXeszM3gQvSvmH+YlzRMHREIQHrXzAFujIw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\coimb\\OneDrive\\Documentos\\PIM\\PIM-API-Csharp\\Course.csproj",
+  "projectFilePath": "C:\\Users\\coimb\\OneDrive\\Documentos\\Pim\\PIM-API-Csharp\\Course.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coimb\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\coimb\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

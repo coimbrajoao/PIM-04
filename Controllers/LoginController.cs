@@ -8,7 +8,7 @@ namespace Course.Controllers
     [Route("api/v1/[controller]")]//criando rota para web
     public class LoginController : Controller
     {
-        private UserServices _UserService;
+        private readonly UserServices _UserService;
 
         public LoginController(UserServices userService)
         {
