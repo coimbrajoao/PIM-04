@@ -33,7 +33,7 @@ namespace Course.Data.Dtos
         public string PhoneNumber {get; set;}
         
         [Required]
-        [MaxLength(11)]
+        [MaxLength(14)]
         public string CPF { get; set; } = null!;
 
         [Required]
@@ -48,7 +48,6 @@ namespace Course.Data.Dtos
         [MaxLength(11)]
         public string Pis { get; set; } = null!;
         [Required]
-        [MaxLength(11)]
         public string Publicplace { get; set; } = null!;//rua
         [Required]
         public string Neighborhood { get; set; } = null!;//bairro

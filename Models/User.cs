@@ -41,7 +41,7 @@ namespace Course.Models
         [MaxLength(11)]
         [Required]
         public string Rg { get; set; }
-        [MaxLength(11)]
+        [MaxLength(14)]
         [Required]
         public string CPF { get; set; } = null!;
         [Required]
