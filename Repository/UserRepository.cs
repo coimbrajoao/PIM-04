@@ -25,6 +25,11 @@ namespace Course.Repository
             return await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
         }
 
+        public async Task<User> GetUserByUserName(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+        }
+
         public async Task AddUserAsync(User user)
         {
             _context.Users.Add(user);

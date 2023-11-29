@@ -69,21 +69,20 @@ namespace Course.Services
             // Tratar o resultado da criação do usuário, se necessário.
         }
 
-        public async Task<string> Login(LoginUserDto dto)
+        public async Task<object> Login(LoginUserDto dto)
         {
 
             var result = await _signInManager.PasswordSignInAsync(dto.UserName, dto.Password, false, false);
-
+            
             if (!result.Succeeded)
             {
                 throw new ApplicationException("Usuario não autenticado");
             }
 
             var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == dto.UserName.ToUpper());
-
             var token = _tokenService.GenerateToken(user);
-
-            return token;
+            var data = new { tokenUser =  token, id =  user.Id}; 
+            return data;
         }
         public async Task<PagedResult<User>> GetPagedResultAsync(int pageNumber, int pageSize)
 
