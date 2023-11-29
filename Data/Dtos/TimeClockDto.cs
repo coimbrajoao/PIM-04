@@ -5,10 +5,15 @@ namespace Course.Data.Dtos
     public class TimeClockDto
     {
         [Required]
-        public DateTime Time { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
 
         [Required]
-        public bool IsClockIn { get; set; }
+        [DataType(DataType.Time)]
+        public TimeSpan Time { get; set; }
+
+        [Required]
+        public string DayOfWeek { get; set; }
 
         [Required]
         public int UserId { get; set; }

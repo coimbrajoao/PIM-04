@@ -3,6 +3,7 @@ using System;
 using Course.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.Migrations
 {
     [DbContext(typeof(FolhaContext))]
-    partial class FolhaContextModelSnapshot : ModelSnapshot
+    [Migration("20231129001933_Corrigindo relogio")]
+    partial class Corrigindorelogio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +72,8 @@ namespace Course.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DayOfWeek")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
 
                     b.Property<TimeSpan>("Time")
                         .HasColumnType("time(6)");

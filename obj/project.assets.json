@@ -6471,19 +6471,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abner\\.nuget\\packages\\": {}
+    "C:\\Users\\coimb\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abner\\OneDrive\\Documentos\\PIM-API-Csharp\\Course.csproj",
+      "projectUniqueName": "C:\\Users\\coimb\\OneDrive\\Documentos\\PIM\\PIM-API-Csharp\\Course.csproj",
       "projectName": "Course",
-      "projectPath": "C:\\Users\\abner\\OneDrive\\Documentos\\PIM-API-Csharp\\Course.csproj",
-      "packagesPath": "C:\\Users\\abner\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\abner\\OneDrive\\Documentos\\PIM-API-Csharp\\obj\\",
+      "projectPath": "C:\\Users\\coimb\\OneDrive\\Documentos\\PIM\\PIM-API-Csharp\\Course.csproj",
+      "packagesPath": "C:\\Users\\coimb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\coimb\\OneDrive\\Documentos\\PIM\\PIM-API-Csharp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\abner\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\coimb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6491,6 +6496,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6587,7 +6593,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },

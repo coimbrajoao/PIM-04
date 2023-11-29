@@ -3,6 +3,7 @@ using System;
 using Course.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.Migrations
 {
     [DbContext(typeof(FolhaContext))]
-    partial class FolhaContextModelSnapshot : ModelSnapshot
+    [Migration("20231129003846_colocando dia da semana no banco")]
+    partial class colocandodiadasemananobanco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

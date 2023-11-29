@@ -30,6 +30,21 @@ namespace Course.Services
 
         public async Task<User> Register(CreateUserDto dto)
         {
+            // Verificar se o nome de usuário (username) já está em uso
+            var existingUsername = await _userManager.FindByNameAsync(dto.UserName);
+            if (existingUsername != null)
+            {
+                throw new ApplicationException("Nome de usuário já está em uso. Escolha outro.");
+            }
+
+            // Verificar se o CPF já está em uso
+            var existingCpf = await _userManager.Users.FirstOrDefaultAsync(u => u.CPF == dto.CPF);
+            if (existingCpf != null)
+            {
+                throw new ApplicationException("CPF já está em uso. Cada CPF deve ser único.");
+            }
+
+            
             _ = new User();
 
             User user = _mapper.Map<User>(dto);
@@ -93,7 +108,7 @@ namespace Course.Services
             }
             catch (Exception e)
             {
-                throw new ApplicationException("Erro ao buscar usuarios");
+                throw new ApplicationException("Erro ao buscar usuarios", e);
             }
         }
 

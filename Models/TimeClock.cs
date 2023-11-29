@@ -10,11 +10,15 @@ namespace Course.Models
         public int IdTimeclock { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime Time { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
 
         [Required]
-        public bool IsClockIn { get; set; } // Indica se é uma marcação de entrada (true) ou saída (false)
+        [DataType(DataType.Time)]
+        public TimeSpan Time { get; set; }
+
+        [Required]
+        public string DayOfWeek { get; set; }
 
         [Required]
         public int UserId { get; set; }

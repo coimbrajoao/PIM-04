@@ -3,6 +3,7 @@ using Course.Data.Dtos;
 using Course.Models;
 using Course.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace Course.Services
 {
@@ -26,8 +27,9 @@ namespace Course.Services
             var timeclock = new TimeClock//instanciando objeto para poder armazenar.
             {
                 UserId = clockDto.UserId,
-                Time = clockDto.Time.ToLocalTime(),
-                IsClockIn = clockDto.IsClockIn
+                Time = clockDto.Time,
+                Date = clockDto.Date,
+                DayOfWeek = Enum.GetName(typeof(DayOfWeek), clockDto.Date.DayOfWeek)
             };
             _folhaContext.TimeClocks.Add(timeclock);
 
@@ -91,7 +93,7 @@ namespace Course.Services
                     throw new ApplicationException("Frequencia não encontrada");
                 }
 
-                timeClock.Time = timeClock.Time.ToLocalTime();
+                timeClock.Time = timeClock.Time.TotalSeconds > 0 ? timeClock.Time : DateTime.Now.TimeOfDay;
 
                 try
                 {
