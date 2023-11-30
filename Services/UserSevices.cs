@@ -90,7 +90,10 @@ namespace Course.Services
             try
             {
 
-                var result = await _folhaContext.Users.OrderBy(x => x.Id).ToListAsync();
+                var result = await _folhaContext.Users
+                    .Where(u => u.Status != "0")
+                    .OrderBy(x => x.Id)
+                    .ToListAsync();
                 var count = await _folhaContext.Users.CountAsync();
 
                 var item = result.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -174,15 +177,13 @@ namespace Course.Services
             {
                 var user = await _UserRepository.GetUserByIdAsync(id) ?? throw new ApplicationException("Usuário não encontrado");
 
-                //_folhaContext.Remove(user);
-                //await _folhaContext.SaveChangesAsync();
                 await _UserRepository.DeleteUserAsync(id);
 
                 return user;
             }
             catch (Exception ex)
             {
-                throw new Exception("O usuario Tem movimentos de folha e não pode ser excluido",ex);
+                throw new Exception(ex.Message);
             }
         }
     }
