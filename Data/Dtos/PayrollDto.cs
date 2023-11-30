@@ -13,6 +13,8 @@ namespace Course.Data.Dtos
         
         public DateTime Date_of_competence { get; set; }
 
+        public int Id { get; set; }
+
         [Required]
         public int? UserId { get; set; }
 

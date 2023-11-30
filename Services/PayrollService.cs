@@ -125,12 +125,13 @@ namespace Course.Services
                         Desc = irrf + inss,
                         Office = user.Office,
                         Date_of_competence = payroll.Date_of_competence
+                   
 
                     };
 
                     _folhacontext.Add(newPayroll);
                     await _folhacontext.SaveChangesAsync();
-                    return netSalary;
+                    return newPayroll.Id;
                 }
                 else
                 {
