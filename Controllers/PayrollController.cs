@@ -56,6 +56,13 @@ namespace Course.Controllers
         [Route("id")]
         public async Task<IActionResult> GenerationPayrollPdf(int id)
         {
+            string pastaDestino = "../pdfs";
+
+            if (!Directory.Exists(pastaDestino))
+            {
+                Directory.CreateDirectory(pastaDestino);
+            }
+
             var payrollInfo = await _PayrollService.FindByID(id);
 
             if (payrollInfo == null)
@@ -75,6 +82,9 @@ namespace Course.Controllers
             htmlContent = htmlContent.Replace("[SALARIO_LIQUIDO]", payrollInfo.NetSalary.ToString("C"));
 
             byte[] pdfBytes = _PayrollService.GeneratePdf(htmlContent);
+            string caminhoDoArquivo = Path.Combine(pastaDestino, "pdf-teste.pdf");
+            System.IO.File.WriteAllBytes(caminhoDoArquivo, pdfBytes);
+
             return File(pdfBytes, "application/pdf", "generated.pdf");
 
         }
