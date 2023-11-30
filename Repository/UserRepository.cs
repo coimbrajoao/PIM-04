@@ -17,7 +17,10 @@ namespace Course.Repository
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+           
+            return await _context.Users
+                .Where(u => u.Status != "0")
+                .ToListAsync();
         }
 
         public async Task<User> GetUserByIdAsync(int userId)
@@ -48,7 +51,7 @@ namespace Course.Repository
             if (user != null)
             {
 
-                _context.Users.Remove(user);
+                user.Status = "0";
                 await _context.SaveChangesAsync();
             }
         }
