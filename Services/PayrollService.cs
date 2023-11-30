@@ -214,10 +214,11 @@ namespace Course.Services
             try
             {
 
+
                 var globalSettings = new GlobalSettings
                 {
                     ColorMode = ColorMode.Color,
-                    Orientation = Orientation.Portrait,
+                    Orientation = Orientation.Landscape,
                     PaperSize = PaperKind.A4,
                     Margins = new MarginSettings { Top = 10, Bottom = 10, Left = 10, Right = 10 },
                     DocumentTitle = "Holerite"
@@ -227,6 +228,7 @@ namespace Course.Services
                 {
                     PagesCount = true,
                     HtmlContent = HtmlContent,
+                    
                     //Page = _hostingEnvironment.ContentRootPath + "\\htmlpagenow.html",
                     WebSettings = { DefaultEncoding = "utf-8" },
                     HeaderSettings = { FontSize = 12, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 },
@@ -238,6 +240,8 @@ namespace Course.Services
                     GlobalSettings = globalSettings,
                     Objects = { ObjectSettings }
                 };
+
+             
 
                 return _converter.Convert(document);
             }

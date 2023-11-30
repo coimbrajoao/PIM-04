@@ -23,6 +23,7 @@ using Course.Repository;
 using Microsoft.Extensions.Options;
 using Swashbuckle.Swagger;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
+using Microsoft.Extensions.FileProviders;
 
 internal class Program
 {
@@ -109,6 +110,13 @@ internal class Program
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "./pdfs")),
+            RequestPath = "/media/pdfs"
+        });
 
         app.UseEndpoints(endpoints =>
         {
